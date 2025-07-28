@@ -1,0 +1,21 @@
+import Navbar from '@/components/Navbar'
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
+
+const home = () => {
+  return (
+    <SafeAreaView>
+      <View className='px-2 py-1'>
+        <Navbar />
+      </View>
+      <View>
+        <Text>home</Text>
+      </View>
+    </SafeAreaView>
+  )
+}
+
+export default home
+
+const styles = StyleSheet.create({})
