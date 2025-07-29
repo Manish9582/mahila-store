@@ -7,7 +7,7 @@ import { StyleSheet } from 'react-native';
 const TabScreens = () => {
   return (
     <Tabs screenOptions={{ headerShown: false }}>
-      <Tabs.Screen name='home' options={{
+      <Tabs.Screen name='index' options={{
         title: 'Home',
         tabBarIcon: () => (
           <AntDesign name="home" size={24} color="black" />

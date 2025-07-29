@@ -7,7 +7,7 @@ const _layout = () => {
       <Stack.Screen name='index'/>
       <Stack.Screen name='auth/sign'/>
       <Stack.Screen name='auth/login'/>
-      <Stack.Screen name='(tabs)/home'/>
+      <Stack.Screen name='(tabs)'/>
     </Stack>
   )
 }
