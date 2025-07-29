@@ -7,8 +7,9 @@ const Home = () => {
     let num1: number = 0;
     let num2: number = 2;
     if (num1 != num2) {
-        return <Redirect href={'/(tabs)'}/>
+        return <Redirect href={'/(tabs)'} />
     }
+
     return (
         <SafeAreaView className="flex-1 bg-purple-50">
             <View className="flex-1">

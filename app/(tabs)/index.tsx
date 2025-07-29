@@ -1,10 +1,13 @@
 import { imagesCate } from '@/components/CategoryImg';
 import Navbar from '@/components/Navbar';
+import { LikeDataFun } from '@/redux/actions';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import React from 'react';
 import { Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useDispatch } from 'react-redux';
 import data from '../../components/data.json';
+
 const CardImg = [
   'https://m.media-amazon.com/images/I/71mX4WATh-L._SX679_.jpg',
   'https://m.media-amazon.com/images/I/81OS4czw-AL._AC_UL480_FMwebp_QL65_.jpg',
@@ -12,6 +15,8 @@ const CardImg = [
   'https://m.media-amazon.com/images/I/611ra+a6mjL._AC_UL480_FMwebp_QL65_.jpg'
 ];
 const Home = () => {
+  const dispatch=useDispatch();
+  console.log(dispatch(LikeDataFun()));
   return (
     <SafeAreaView className='bg-purple-50 h-full'>
       <KeyboardAvoidingView behavior={Platform.OS == 'ios' ? 'padding' : 'height'}>
