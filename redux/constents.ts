@@ -1,2 +1,2 @@
-export const likeData='Like_Data'
-export const buyData='Buy_Data'
+export const likeData='LIKE_DATA'
+export const buyData='BUY_PRODUCT'

@@ -1,15 +1,15 @@
-export const LikeDataFun = () => {
+export const LikeDataFun = (id:any) => {
     return {
         type: 'LIKE_DATA',
-        payload: '❤️ Item liked',
+        payload:id,
     };
 }
 
 
-export const BuyDataFun = () => {
+export const BuyDataFun = (id:any) => {
     return {
-        type: 'Buy Data',
-        payload: '❤️ Item liked',
+        type: 'BUY_PRODUCT',
+        payload:id,
     };
 }
 
