@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux'
 
 const Shop = () => {
    const buySelctor= useSelector((state:any)=>state.buy.buy)
-   console.log(buySelctor)
     return (
         <SafeAreaView className='flex-1'>
             <View className='px-2 py-1'>
@@ -17,11 +16,11 @@ const Shop = () => {
                 <View className='my-3'>
                     {buySelctor.length > 0 ?
                         (
-                            <Text className="text-black font-bold text-2xl">Your favorate product</Text>
+                            <Text className="text-black font-bold text-2xl">Product list that you buy</Text>
                         ) :
                         (
                             <Text className="text-red-700 font-bold text-2xl">
-                                You didn't like any item
+                                You didn't buy any item
                             </Text>
                         )}
                 </View>

@@ -1,14 +1,27 @@
-import { Link, Redirect } from 'expo-router';
-import React from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Link, useRouter } from 'expo-router';
+import React, { useEffect } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Home = () => {
-    let num1: number = 0;
-    let num2: number = 2;
-    if (num1 != num2) {
-        return <Redirect href={'/(tabs)'} />
-    }
+    const route = useRouter();
+    useEffect(() => {
+        const checkAuth = async () => {
+            try {
+                const login: any = await AsyncStorage.getItem('login');
+                if (login) {
+                    route.replace('/(tabs)')
+                }else{
+                    route.replace('/auth/login')
+                }
+            }
+            catch (error) {
+                console.log(error)
+            }
+        }
+        checkAuth()
+    }, []);
 
     return (
         <SafeAreaView className="flex-1 bg-purple-50">

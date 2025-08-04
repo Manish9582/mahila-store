@@ -1,17 +1,19 @@
 import AntDesign from '@expo/vector-icons/AntDesign';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
 const genderOptions = [
     { label: 'Male', value: 'male' },
     { label: 'Female', value: 'female' },
     { label: 'Other', value: 'other' },
 ];
 
-const sign = () => {
+const Sign = () => {
+    const route = useRouter();
     const [calenderHide, setcalenderHide] = useState<boolean>(false)
     const [emailError, setemailError] = useState<string>('')
     const [passError, setpassError] = useState<string>('')
@@ -69,7 +71,6 @@ const sign = () => {
             return;
         }
         setpassError('');
-
     };
     const MatchConfimPass = (data: string) => {
         if (user.password != data) {
@@ -79,6 +80,26 @@ const sign = () => {
         setconfirmError('')
     }
 
+    const handleUserData = async () => {
+        const { name, email, age, dob, gender, city, counter, pincode, adress, password } = user;
+        if (
+            name !== null && email !== null && age !== null && dob !== null && gender !== null && city !== null &&
+            counter !== null && pincode !== null && adress !== null && password !== null && confirmError !== null
+        ) {
+            try {
+                const minimalUser = { name, email,password };
+                await AsyncStorage.setItem('user', JSON.stringify(minimalUser));
+                console.log('User saved!');
+                route.replace('/auth/login');
+            } catch (e) {
+                Alert.alert('Error', 'Failed to save user data.');
+            }
+        } else {
+            Alert.alert('Faileds are blank');
+        }
+    }
+
+  
     return (
         <SafeAreaView className='bg-purple-50 pb-10'>
             <KeyboardAvoidingView
@@ -147,13 +168,13 @@ const sign = () => {
                             <View>
                                 <Text className='font-semibold text-[18px] mb-1'>Address</Text>
                                 <TextInput className='border border-gray-300 px-2'
-                                    onChangeText={(text) => handleInput('address', text)}
+                                    onChangeText={(text) => handleInput('adress', text)}
                                 />
                             </View>
                             <View>
                                 <Text className='font-semibold text-[18px] mb-1'>Country</Text>
                                 <TextInput className='border border-gray-300 px-2'
-                                    onChangeText={(text) => handleInput('country', text)}
+                                    onChangeText={(text) => handleInput('counter', text)}
                                 />
                             </View>
                             <View>
@@ -204,7 +225,7 @@ const sign = () => {
                                 )}
                             </View>
                             <View className='my-4'>
-                                <TouchableOpacity className='w-auto bg-purple-800 px-6 py-2.5 rounded-lg'>
+                                <TouchableOpacity className='w-auto bg-purple-800 px-6 py-2.5 rounded-lg' onPress={handleUserData}>
                                     <Text className='font-bold text-white text-center text-[19px]'>Submit</Text>
                                 </TouchableOpacity>
                             </View>
@@ -217,7 +238,7 @@ const sign = () => {
     )
 }
 
-export default sign
+export default Sign
 
 const styles = StyleSheet.create({
     dropdown: {

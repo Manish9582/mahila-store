@@ -8,8 +8,8 @@ const _layout = () => {
     <Provider store={store}>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name='index' />
-        <Stack.Screen name='auth/sign' />
-        <Stack.Screen name='auth/login' />
+        <Stack.Screen name='/auth/sign' />
+        <Stack.Screen name='/auth/login' />
         <Stack.Screen name='(tabs)' />
       </Stack>
     </Provider>
